@@ -19,7 +19,7 @@ builder.Services.AddScoped<IStaffDal, EfStaffDal>();
 builder.Services.AddScoped<IStaffService, StaffManager>();
 
 builder.Services.AddScoped<IServiceDal, EfServiceDal>();
-builder.Services.AddScoped<IServiceService,ServiceManager>();
+builder.Services.AddScoped<IServiceService, ServiceManager>();
 
 builder.Services.AddScoped<IRoomDal, EfRoomDal>();
 builder.Services.AddScoped<IRoomService, RoomManager>();
@@ -30,7 +30,19 @@ builder.Services.AddScoped<ISubscribeService, SubscribeManager>();
 builder.Services.AddScoped<ITestimonialDal, EfTestimonialDal>();
 builder.Services.AddScoped<ITestimonialService, TestimonialManager>();
 
+builder.Services.AddAutoMapper(typeof(StartupBase));
+
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("otelApiCors", opts =>
+{
+    opts.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+});
+});
+
 var app = builder.Build();
+
+app.UseCors("otelApiCors");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
