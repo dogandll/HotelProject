@@ -1,1 +1,4 @@
-Swagger eklenecek
+﻿--Api Testi & Swagger
+Temayı ekleyelim
+-Register -Login
+
