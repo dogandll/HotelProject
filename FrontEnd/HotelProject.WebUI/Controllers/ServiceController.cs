@@ -1,4 +1,4 @@
-﻿using HotelProject.WebUI.Dtos.ServiceDto; 
+﻿using HotelProject.WebUI.Dtos.ServiceDto;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
@@ -34,6 +34,10 @@ namespace HotelProject.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddService(CreateServiceDto model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(model);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -45,6 +49,7 @@ namespace HotelProject.WebUI.Controllers
 
             return View();
         }
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteService(int id)
         {
             var client = _httpClientFactory.CreateClient();
