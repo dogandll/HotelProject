@@ -64,6 +64,10 @@ namespace HotelProject.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateService(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            } 
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync($"http://localhost:9471/api/Service/{id}");
             if (responseMessage.IsSuccessStatusCode)

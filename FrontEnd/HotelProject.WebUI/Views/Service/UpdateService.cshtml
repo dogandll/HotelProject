@@ -1,0 +1,22 @@
+﻿@model UpdateServiceDto
+@{
+    ViewData["Title"] = "Update Service";
+}
+
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+    <label>Hizmet İkonu</label>
+    <input type="text" asp-for="ServiceIcon" class="form form-control" />
+    <span asp-validation-for="ServiceIcon" class="text-info"></span>
+    <br />
+    <label>Hizmet Adı</label>
+    <input type="text" asp-for="Title" class="form form-control" />
+    <span asp-validation-for="Title" class="text-info"></span>
+    <br />
+    <label>Hizmet Açıklama</label>
+    <input type="text" asp-for="Description" class="form form-control" />
+    <span asp-validation-for="Description" class="text-info"></span>
+    <br />
+    <button class="btn btn-primary">Hizmet Güncelle</button>
+</form>
+
